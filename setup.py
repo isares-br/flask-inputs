@@ -19,7 +19,7 @@ setup(
     author_email='nathan@nathancahill.com',
     license='MIT',
     keywords='flask validation wtforms',
-    packages=['flask_inputs'],
+    packages=['biszx_flask_inputs'],
     install_requires=['flask', 'wtforms', 'future'],
     tests_require=['nose', 'coverage', 'jsonschema'],
 )

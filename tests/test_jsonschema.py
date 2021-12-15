@@ -2,8 +2,8 @@
 import unittest
 
 from flask import Flask, request
-from flask_inputs import Inputs
-from flask_inputs.validators import JsonSchema
+from biszx_flask_inputs import Inputs
+from biszx_flask_inputs.validators import JsonSchema
 
 
 app = Flask(__name__)
