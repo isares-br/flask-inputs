@@ -1,4 +1,4 @@
-
+import functools
 import collections
 from itertools import chain
 from future.utils import iteritems
@@ -8,11 +8,30 @@ from werkzeug.datastructures import MultiDict
 from wtforms.form import BaseForm
 from wtforms.fields import Field
 
+from flask import request
+
+
+def validate_input(Input):
+    """Validate Input decorator
+    """
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            inputs = Input(request)
+            if not inputs.validate():
+                return {'error': inputs.errors}, 400
+            return func(*args, **kwargs)
+        return wrapper
+    return decorator
+
 
 class Inputs(object):
     #: flask.Request attributes available for validation
     valid_attrs = ['args', 'form', 'values', 'cookies',
                    'headers', 'json', 'rule']
+    
+    # Error message templates
+    error_messages = {}
 
     def __init__(self, request):
         """Base class for input validation. Subclass to add validators.
@@ -34,7 +53,7 @@ class Inputs(object):
                 if isinstance(input, dict):
                     for field, validators in iteritems(input):
                         fields[field] = Field(validators=validators)
-                elif isinstance(input, collections.Iterable):
+                elif isinstance(input, collections.abc.Iterable):
                     fields['_input'] = Field(validators=input)
 
                 self._forms[name] = BaseForm(fields)
@@ -77,4 +96,18 @@ class Inputs(object):
                 success = False
                 self.errors += chain(*form.errors.values())
 
+        if success:
+            success = self._validate()
         return success
+
+    def _validate(self):
+        """Override this method to add custom validation.
+
+        :returns: Boolean
+        """
+        return True
+
+    def _fail(self, key):
+        """Add to errors if validation fails.
+        """
+        self.errors.append(self.error_messages[key])

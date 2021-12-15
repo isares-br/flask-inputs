@@ -10,8 +10,8 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 
 setup(
-    name='Flask-Inputs',
-    version='0.2.0',
+    name='Biszx-Flask-Inputs',
+    version='1.0.0',
     description='Flask request data validation',
     long_description=long_description,
     url='http://pythonhosted.org/Flask-Inputs/',
