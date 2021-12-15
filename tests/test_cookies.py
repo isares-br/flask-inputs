@@ -2,7 +2,7 @@
 import unittest
 
 from flask import Flask, request
-from biszx_flask_inputs import Inputs
+from flask_inputs import Inputs
 from werkzeug.datastructures import MultiDict
 from wtforms.validators import DataRequired
 
