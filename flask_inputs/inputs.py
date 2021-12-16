@@ -31,7 +31,7 @@ class Inputs(object):
                    'headers', 'json', 'rule']
     
     # Error message templates
-    error_messages = {}
+    _error_messages = {}
 
     def __init__(self, request):
         """Base class for input validation. Subclass to add validators.
@@ -110,4 +110,4 @@ class Inputs(object):
     def _fail(self, key):
         """Add to errors if validation fails.
         """
-        self.errors.append(self.error_messages[key])
+        self.errors.append(self._error_messages[key])
