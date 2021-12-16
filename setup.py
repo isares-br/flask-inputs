@@ -11,7 +11,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='Biszx-Flask-Inputs',
-    version='1.0.0',
+    version='1.0.1',
     description='Flask request data validation',
     long_description=long_description,
     url='http://pythonhosted.org/Flask-Inputs/',
@@ -20,6 +20,6 @@ setup(
     license='MIT',
     keywords='flask validation wtforms',
     packages=['flask_inputs'],
-    install_requires=['flask', 'wtforms', 'future'],
+    install_requires=['flask', 'wtforms', 'future', 'jsonschema'],
     tests_require=['nose', 'coverage', 'jsonschema'],
 )
