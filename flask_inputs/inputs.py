@@ -28,8 +28,8 @@ def validate_input(Input):
 class Inputs(object):
     #: flask.Request attributes available for validation
     valid_attrs = ['args', 'form', 'values', 'cookies',
-                   'headers', 'json', 'rule']
-    
+                   'headers', 'json', 'rule', 'files']
+
     # Error message templates
     _error_messages = {}
 
